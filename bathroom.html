@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bathroom — LUXERRA Portfolio</title>
+  <meta name="description" content="LUXERRA bathroom design portfolio — photorealistic 3D renderings of luxury bathroom spaces." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ══════════════════════════════
+       TOKENS — matches luxerra.html
+    ══════════════════════════════ */
+    :root {
+      --white:    #FFFFFF;
+      --ivory:    #F6F2EC;
+      --sand:     #E9DDCF;
+      --warm-br:  #6B5646;
+      --gold:     #C6A769;
+      --gold-lt:  #DFC08E;
+      --black:    #0E0E0E;
+      --espresso: #1A1510;
+      --ease:     cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* ══════════════════════════════
+       NAV
+    ══════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 56px;
+      background: rgba(255,255,255,0);
+      transition: background 0.5s, padding 0.4s, backdrop-filter 0.5s;
+    }
+    .nav.scrolled {
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(16px);
+      padding: 18px 56px;
+      border-bottom: 1px solid rgba(201,167,105,0.18);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      color: var(--white);
+      transition: color 0.4s;
+    }
+    .nav.scrolled .nav-logo { color: var(--espresso); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.78);
+      transition: color 0.25s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 0.3s var(--ease);
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav.scrolled .nav-links a { color: var(--warm-br); }
+    .nav.scrolled .nav-links a:hover { color: var(--espresso); }
+
+    /* Back arrow */
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      transition: color 0.25s;
+      cursor: pointer;
+    }
+    .nav-back svg { width: 18px; height: 18px; stroke: currentColor; fill: none; transition: transform 0.3s var(--ease); }
+    .nav-back:hover { color: var(--white); }
+    .nav-back:hover svg { transform: translateX(-4px); }
+    .nav.scrolled .nav-back { color: var(--warm-br); }
+    .nav.scrolled .nav-back:hover { color: var(--espresso); }
+
+    /* Hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      width: 26px;
+      cursor: pointer;
+    }
+    .nav-hamburger span { height: 1px; background: var(--white); transition: background 0.4s; }
+    .nav.scrolled .nav-hamburger span { background: var(--espresso); }
+
+    /* Mobile drawer */
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--espresso);
+      z-index: 200;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-drawer a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      color: var(--white);
+      font-weight: 300;
+      letter-spacing: 0.06em;
+    }
+    .nav-drawer-close {
+      position: absolute;
+      top: 28px; right: 32px;
+      font-size: 1.8rem;
+      color: var(--white);
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    /* ══════════════════════════════
+       HERO
+    ══════════════════════════════ */
+    .hero {
+      position: relative;
+      height: 100svh;
+      min-height: 560px;
+      overflow: hidden;
+      background: var(--espresso);
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      /* starts slightly zoomed, will settle to 1 */
+      transform: scale(1.07);
+      animation: heroZoom 1.8s 0.2s var(--ease) forwards;
+    }
+
+    @keyframes heroZoom {
+      to { transform: scale(1); }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(14,14,14,0.45) 0%,
+        rgba(14,14,14,0.1)  40%,
+        rgba(14,14,14,0.55) 100%
+      );
+    }
+
+    .hero-content {
+      position: absolute;
+      bottom: 72px; left: 56px;
+      color: var(--white);
+    }
+
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.7s var(--ease) forwards;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.6rem, 9vw, 7.5rem);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      line-height: 1;
+      opacity: 0;
+      animation: fadeUp 1s 0.9s var(--ease) forwards;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-lt);
+    }
+
+    .hero-sub {
+      margin-top: 18px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 1.6vw, 1.3rem);
+      font-style: italic;
+      color: rgba(255,255,255,0.6);
+      opacity: 0;
+      animation: fadeUp 1s 1.1s var(--ease) forwards;
+    }
+
+    .hero-count {
+      position: absolute;
+      bottom: 72px; right: 56px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeIn 1s 1.3s forwards;
+    }
+    .hero-count span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.2);
+      line-height: 1;
+    }
+    .hero-count small {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ══════════════════════════════
+       LAYOUT COMMONS
+    ══════════════════════════════ */
+    .section-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ══════════════════════════════
+       INTRO BAND
+    ══════════════════════════════ */
+    .intro-band {
+      background: var(--ivory);
+      padding: 64px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 48px;
+      border-bottom: 1px solid var(--sand);
+    }
+
+    .intro-band-left { flex: 1; }
+    .intro-band-left p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--warm-br);
+      line-height: 1.55;
+      max-width: 600px;
+    }
+
+    .intro-band-right {
+      display: flex;
+      gap: 48px;
+      flex-shrink: 0;
+    }
+
+    .intro-stat { text-align: center; }
+    .intro-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .intro-stat-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--warm-br);
+      margin-top: 6px;
+      opacity: 0.7;
+    }
+
+    /* ══════════════════════════════
+       GALLERY LAYOUTS
+    ══════════════════════════════ */
+
+    /* — Full bleed — */
+    .block-full {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .block-full img {
+      width: 100%;
+      height: 75vh;
+      object-fit: cover;
+      display: block;
+      transition: transform 1s var(--ease);
+    }
+    .block-full:hover img { transform: scale(1.03); }
+
+    /* — Two column — */
+    .block-two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+    .block-two .img-wrap {
+      overflow: hidden;
+      position: relative;
+    }
+    .block-two .img-wrap img {
+      height: 65vh;
+      object-fit: cover;
+      transition: transform 0.9s var(--ease);
+    }
+    .block-two .img-wrap:hover img { transform: scale(1.04); }
+
+    /* — Two column unequal (7/5 split) — */
+    .block-two-asym {
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+      gap: 4px;
+    }
+
+    /* — Three column — */
+    .block-three {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 4px;
+    }
+    .block-three .img-wrap {
+      overflow: hidden;
+    }
+    .block-three .img-wrap img {
+      height: 52vh;
+      object-fit: cover;
+      transition: transform 0.9s var(--ease);
+    }
+    .block-three .img-wrap:hover img { transform: scale(1.05); }
+
+    /* — Pinned layout: large left + stacked right — */
+    .block-pinned {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 4px;
+    }
+    .block-pinned .img-main {
+      grid-row: 1 / 3;
+      overflow: hidden;
+    }
+    .block-pinned .img-main img {
+      height: 100%;
+      min-height: 70vh;
+      object-fit: cover;
+      transition: transform 0.9s var(--ease);
+    }
+    .block-pinned .img-main:hover img { transform: scale(1.04); }
+    .block-pinned .img-side {
+      overflow: hidden;
+    }
+    .block-pinned .img-side img {
+      height: 100%;
+      min-height: 35vh;
+      object-fit: cover;
+      transition: transform 0.9s var(--ease);
+    }
+    .block-pinned .img-side:hover img { transform: scale(1.05); }
+
+    /* Caption overlay on hover */
+    .img-wrap, .block-full, .img-main, .img-side {
+      position: relative;
+    }
+    .img-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 20px 24px;
+      background: linear-gradient(to top, rgba(14,14,14,0.6), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .img-wrap:hover .img-caption,
+    .block-full:hover .img-caption,
+    .img-main:hover .img-caption,
+    .img-side:hover .img-caption { opacity: 1; }
+
+    .img-caption-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+    .img-caption-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--gold-lt);
+    }
+
+    /* spacing between blocks */
+    .gap-sm { height: 4px; background: var(--white); }
+    .gap-md { height: 48px; background: var(--white); }
+    .gap-lg { height: 80px; background: var(--white); }
+
+    /* ══════════════════════════════
+       EDITORIAL TEXT BREAK
+    ══════════════════════════════ */
+    .text-break {
+      padding: 88px 56px;
+      background: var(--ivory);
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .text-break-left {}
+    .text-break-left .section-label { margin-bottom: 20px; }
+    .text-break-left h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--espresso);
+    }
+    .text-break-left h2 em {
+      font-style: italic;
+      color: var(--warm-br);
+    }
+
+    .text-break-right {}
+    .text-break-right p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--warm-br);
+      font-weight: 300;
+    }
+    .text-break-right p + p { margin-top: 20px; }
+
+    .text-break-cta {
+      margin-top: 36px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--espresso);
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 3px;
+      transition: color 0.25s, border-color 0.25s;
+    }
+    .text-break-cta svg { width: 16px; height: 16px; stroke: currentColor; fill: none; transition: transform 0.3s var(--ease); }
+    .text-break-cta:hover { color: var(--gold); }
+    .text-break-cta:hover svg { transform: translateX(4px); }
+
+    /* ══════════════════════════════
+       LIGHTBOX
+    ══════════════════════════════ */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(14,14,14,0.96);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .lightbox.open { display: flex; }
+
+    .lightbox-img-wrap {
+      max-width: 92vw;
+      max-height: 86vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-img-wrap img {
+      max-width: 92vw;
+      max-height: 86vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 28px; right: 36px;
+      background: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.7);
+      width: 44px; height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: background 0.25s, color 0.25s;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.08); color: var(--white); }
+
+    .lightbox-nav {
+      position: fixed;
+      top: 50%; 
+      transform: translateY(-50%);
+      background: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.6);
+      width: 48px; height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s;
+    }
+    .lightbox-nav:hover { background: rgba(255,255,255,0.08); color: var(--white); }
+    .lightbox-prev { left: 24px; }
+    .lightbox-next { right: 24px; }
+    .lightbox-nav svg { width: 20px; height: 20px; stroke: currentColor; fill: none; }
+
+    .lightbox-counter {
+      position: fixed;
+      bottom: 28px;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ══════════════════════════════
+       NEXT PROJECT CTA
+    ══════════════════════════════ */
+    .next-project {
+      background: var(--espresso);
+      padding: 100px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .next-project-left .section-label { color: var(--gold); margin-bottom: 16px; }
+    .next-project-left h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      color: var(--white);
+      letter-spacing: 0.04em;
+    }
+
+    .next-cats {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .next-cat-btn {
+      padding: 10px 24px;
+      border: 1px solid rgba(198,167,105,0.3);
+      font-size: 0.67rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      transition: border-color 0.25s, color 0.25s, background 0.25s;
+      cursor: pointer;
+      background: none;
+    }
+    .next-cat-btn:hover {
+      border-color: var(--gold);
+      color: var(--white);
+      background: rgba(198,167,105,0.08);
+    }
+
+    .next-project-right a {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      transition: gap 0.3s var(--ease);
+    }
+    .next-project-right a:hover { gap: 24px; }
+    .next-project-right svg { width: 24px; height: 24px; stroke: currentColor; fill: none; }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    .footer {
+      background: var(--espresso);
+      padding: 40px 56px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.22em;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .footer-copy {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.25);
+      text-align: right;
+      line-height: 1.8;
+    }
+
+    /* ══════════════════════════════
+       ANIMATIONS
+    ══════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.22s; }
+    .reveal-d3 { transition-delay: 0.34s; }
+
+    /* ══════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════ */
+    @media (max-width: 900px) {
+      .nav { padding: 20px 28px; }
+      .nav.scrolled { padding: 14px 28px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .hero-content { left: 28px; bottom: 48px; }
+      .hero-count { right: 28px; bottom: 48px; }
+
+      .intro-band { padding: 44px 28px; flex-direction: column; gap: 32px; }
+      .intro-band-right { justify-content: center; }
+
+      .block-two, .block-two-asym, .block-three { grid-template-columns: 1fr; }
+      .block-two .img-wrap img,
+      .block-two-asym .img-wrap img { height: 56vw; }
+      .block-three .img-wrap img { height: 72vw; }
+
+      .block-pinned { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .block-pinned .img-main { grid-row: auto; }
+      .block-pinned .img-main img,
+      .block-pinned .img-side img { height: 60vw; min-height: unset; }
+
+      .block-full img { height: 56vw; }
+
+      .text-break {
+        padding: 56px 28px;
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .next-project {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 36px;
+        padding: 72px 28px;
+      }
+
+      .footer { padding: 36px 28px; flex-direction: column; gap: 12px; }
+      .footer-copy { text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="navDrawer">
+  <button class="nav-drawer-close" id="drawerClose" aria-label="Close">✕</button>
+  <a href="luxerra.html">Home</a>
+  <a href="luxerra.html#portfolio">Portfolio</a>
+  <a href="luxerra.html#services">Services</a>
+  <a href="luxerra.html#about">About</a>
+  <a href="luxerra.html#contact">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="siteNav">
+  <a href="luxerra.html" class="nav-logo">LUXERRA</a>
+
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="luxerra.html#portfolio">Portfolio</a></li>
+      <li><a href="luxerra.html#services">Services</a></li>
+      <li><a href="luxerra.html#about">About</a></li>
+      <li><a href="luxerra.html#contact">Contact</a></li>
+    </ul>
+
+    <a href="luxerra.html#portfolio" class="nav-back" aria-label="Back to portfolio">
+      <svg viewBox="0 0 24 24" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+      </svg>
+      All Work
+    </a>
+
+    <div class="nav-hamburger" id="hamburger" role="button" tabindex="0" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════
+     HERO
+══════════════════════════════ -->
+<section class="hero">
+  <img
+    class="hero-img"
+    src="images/bath-5.jpg"
+    alt="LUXERRA — Bathroom Design Hero"
+  />
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Portfolio · Bathroom</p>
+    <h1 class="hero-title">Bath<em>room</em></h1>
+    <p class="hero-sub">Where stone, warmth, and water meet</p>
+  </div>
+
+  <div class="hero-count">
+    <span>09</span>
+    <small>Renders</small>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     INTRO BAND
+══════════════════════════════ -->
+<div class="intro-band reveal">
+  <div class="intro-band-left">
+    <p>"A bathroom should feel like a personal sanctuary — a daily ritual of calm, material beauty, and considered space."</p>
+  </div>
+  <div class="intro-band-right">
+    <div class="intro-stat">
+      <div class="intro-stat-num">9</div>
+      <div class="intro-stat-label">Renders</div>
+    </div>
+    <div class="intro-stat">
+      <div class="intro-stat-num">3</div>
+      <div class="intro-stat-label">Concepts</div>
+    </div>
+    <div class="intro-stat">
+      <div class="intro-stat-num">V-Ray</div>
+      <div class="intro-stat-label">Software</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     GALLERY BLOCKS
+══════════════════════════════ -->
+
+<!-- 01 & 02 — Two equal columns -->
+<div class="block-two reveal">
+  <div class="img-wrap" data-index="0">
+    <img src="images/bath-1.jpg" alt="Bathroom render 01" loading="lazy" />
+    <div class="img-caption">
+      <span class="img-caption-label">Concept I — Marble & Wood</span>
+      <span class="img-caption-num">01</span>
+    </div>
+  </div>
+  <div class="img-wrap" data-index="1">
+    <img src="images/bath-2.jpg" alt="Bathroom render 02" loading="lazy" />
+    <div class="img-caption">
+      <span class="img-caption-label">Concept I — Shower View</span>
+      <span class="img-caption-num">02</span>
+    </div>
+  </div>
+</div>
+
+<div class="gap-sm"></div>
+
+<!-- 03 — Asymmetric: 3 left + 2 right -->
+<div class="block-two-asym reveal">
+  <div class="img-wrap" data-index="2">
+    <img src="images/bath-3.jpg" alt="Bathroom render 03" loading="lazy" style="height:60vh;" />
+    <div class="img-caption">
+      <span class="img-caption-label">Concept I — Vanity Detail</span>
+      <span class="img-caption-num">03</span>
+    </div>
+  </div>
+  <div class="img-wrap" data-index="3">
+    <img src="images/bath-4.jpg" alt="Bathroom render 04" loading="lazy" style="height:60vh;" />
+    <div class="img-caption">
+      <span class="img-caption-label">Concept I — Overview</span>
+      <span class="img-caption-num">04</span>
+    </div>
+  </div>
+</div>
+
+<div class="gap-lg"></div>
+
+<!-- TEXT BREAK -->
+<div class="text-break reveal">
+  <div class="text-break-left">
+    <p class="section-label">Concept I</p>
+    <h2>Marble <em>& Warm Oak</em></h2>
+  </div>
+  <div class="text-break-right">
+    <p>This concept pairs Calacatta marble cladding with slatted warm oak panels, creating a dialogue between cool mineral surfaces and natural timber warmth. The floating vanity in rich walnut anchors the space while a pair of oval mirrors frame the double sink with quiet symmetry.</p>
+    <p>Recessed warm lighting traces the ceiling and shelving niches, dissolving any sense of harshness — the light here is something you feel rather than see.</p>
+    <a href="luxerra.html#contact" class="text-break-cta">
+      Start a project like this
+      <svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+<div class="gap-lg"></div>
+
+<!-- 05 & 06 — Full bleed dramatic bathroom -->
+<div class="block-full reveal" data-index="4">
+  <img src="images/bath-5.jpg" alt="Bathroom render 05 — Dark luxury" loading="lazy" />
+  <div class="img-caption">
+    <span class="img-caption-label">Concept II — Evening Light</span>
+    <span class="img-caption-num">05</span>
+  </div>
+</div>
+
+<div class="gap-sm"></div>
+
+<!-- 07 — Matte black minimalist -->
+<div class="block-pinned reveal">
+  <div class="img-main" data-index="6">
+    <img src="images/bath-7.jpg" alt="Bathroom render 07 — Black minimalist" loading="lazy" />
+    <div class="img-caption">
+      <span class="img-caption-label">Concept III — Noir Minimalism</span>
+      <span class="img-caption-num">07</span>
+    </div>
+  </div>
+  <div class="img-side" data-index="7">
+    <img src="images/bath-8.jpg" alt="Bathroom render 08 — Gold vanity" loading="lazy" />
+    <div class="img-caption">
+      <span class="img-caption-label">Concept IV — Gold & Stone</span>
+      <span class="img-caption-num">08</span>
+    </div>
+  </div>
+  <div class="img-side" data-index="8">
+    <img src="images/bath-9.jpg" alt="Bathroom render 09 — Emerald" loading="lazy" />
+    <div class="img-caption">
+      <span class="img-caption-label">Concept V — Forest Green</span>
+      <span class="img-caption-num">09</span>
+    </div>
+  </div>
+</div>
+
+<div class="gap-lg"></div>
+
+<!-- TEXT BREAK 2 -->
+<div class="text-break reveal" style="background: var(--white);">
+  <div class="text-break-left">
+    <p class="section-label">Concepts II – V</p>
+    <h2>Four <em>Moods,</em><br>One Space</h2>
+  </div>
+  <div class="text-break-right">
+    <p>From the cinematic drama of floor-to-ceiling glass and forest views, to the sharp restraint of matte black fixtures — these bathroom concepts explore the full tonal range of luxury residential design.</p>
+    <p>Each render was produced in V-Ray with careful attention to material response under different light conditions, ensuring clients can confidently visualise the final result before construction begins.</p>
+    <a href="luxerra.html#services" class="text-break-cta">
+      View services & pricing
+      <svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     NEXT PROJECT
+══════════════════════════════ -->
+<div class="next-project reveal">
+  <div class="next-project-left">
+    <p class="section-label">Continue Exploring</p>
+    <h2>More from the Portfolio</h2>
+    <div class="next-cats">
+      <button class="next-cat-btn" onclick="location.href='restaurant.html'">Restaurant</button>
+      <button class="next-cat-btn" onclick="location.href='kitchen.html'">Kitchen</button>
+      <button class="next-cat-btn" onclick="location.href='loft.html'">Loft</button>
+      <button class="next-cat-btn" onclick="location.href='drawings.html'">Drawings</button>
+      <button class="next-cat-btn" onclick="location.href='products.html'">Products</button>
+    </div>
+  </div>
+  <div class="next-project-right">
+    <a href="luxerra.html#contact">
+      Start your project
+      <svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <span class="footer-logo">LUXERRA</span>
+  <div class="footer-copy">
+    <div>© 2025 Luxerra Studio · luxuryterra.2024@gmail.com</div>
+    <div>Interior Design · 3D Visualization · Toronto</div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════
+     LIGHTBOX
+══════════════════════════════ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lightbox-close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lbPrev" aria-label="Previous image">
+    <svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+  </button>
+  <div class="lightbox-img-wrap">
+    <img id="lbImg" src="" alt="Enlarged bathroom render" />
+  </div>
+  <button class="lightbox-nav lightbox-next" id="lbNext" aria-label="Next image">
+    <svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+  </button>
+  <div class="lightbox-counter" id="lbCounter"></div>
+</div>
+
+<script>
+  /* ═══════════ NAV ═══════════ */
+  const nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  /* ═══════════ HAMBURGER ═══════════ */
+  const drawer = document.getElementById('navDrawer');
+  document.getElementById('hamburger').addEventListener('click', () => drawer.classList.add('open'));
+  document.getElementById('drawerClose').addEventListener('click', () => drawer.classList.remove('open'));
+
+  /* ═══════════ SCROLL REVEAL ═══════════ */
+  const revealEls = document.querySelectorAll('.reveal');
+  new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }).observe
+    ? (() => {
+        const obs = new IntersectionObserver(entries => {
+          entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        revealEls.forEach(el => obs.observe(el));
+      })()
+    : revealEls.forEach(el => el.classList.add('visible'));
+
+  /* ═══════════ LIGHTBOX ═══════════ */
+  const allImages = [
+    { src: 'images/bath-1.jpg', label: 'Concept I — Marble & Wood · 01' },
+    { src: 'images/bath-2.jpg', label: 'Concept I — Shower View · 02' },
+    { src: 'images/bath-3.jpg', label: 'Concept I — Vanity Detail · 03' },
+    { src: 'images/bath-4.jpg', label: 'Concept I — Overview · 04' },
+    { src: 'images/bath-5.jpg', label: 'Concept II — Evening Light · 05' },
+    { src: 'images/bath-6.jpg', label: 'Concept II — Alternate · 06' },
+    { src: 'images/bath-7.jpg', label: 'Concept III — Noir Minimalism · 07' },
+    { src: 'images/bath-8.jpg', label: 'Concept IV — Gold & Stone · 08' },
+    { src: 'images/bath-9.jpg', label: 'Concept V — Forest Green · 09' },
+  ];
+
+  const lb        = document.getElementById('lightbox');
+  const lbImg     = document.getElementById('lbImg');
+  const lbCounter = document.getElementById('lbCounter');
+  let   current   = 0;
+
+  function openLightbox(index) {
+    current = index;
+    showImage();
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function showImage() {
+    const item = allImages[current];
+    lbImg.src  = item.src;
+    lbImg.alt  = item.label;
+    lbCounter.textContent = `${current + 1} / ${allImages.length}`;
+  }
+
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbPrev').addEventListener('click', () => {
+    current = (current - 1 + allImages.length) % allImages.length;
+    showImage();
+  });
+  document.getElementById('lbNext').addEventListener('click', () => {
+    current = (current + 1) % allImages.length;
+    showImage();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape')     closeLightbox();
+    if (e.key === 'ArrowLeft')  { current = (current - 1 + allImages.length) % allImages.length; showImage(); }
+    if (e.key === 'ArrowRight') { current = (current + 1) % allImages.length; showImage(); }
+  });
+
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+
+  /* Attach click to every image wrapper */
+  document.querySelectorAll('[data-index]').forEach(el => {
+    el.style.cursor = 'zoom-in';
+    el.addEventListener('click', () => openLightbox(parseInt(el.dataset.index)));
+  });
+</script>
+
+</body>
+</html>
