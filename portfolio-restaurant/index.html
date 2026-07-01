@@ -284,9 +284,14 @@ p.body-sm{ font-size:.95rem; color:var(--taupe); line-height:1.75; font-weight:3
 .stat .n{ font-family:var(--display); font-size:clamp(2.2rem,4vw,3.2rem); font-weight:500; }
 .stat .l{ font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--taupe); margin-top:.4rem; }
 
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
+.cat-row{ display:flex; align-items:center; gap:4rem; }
+.cat-row.reverse{ flex-direction:row-reverse; }
+.cat-row .cat-img{ flex:1 1 55%; aspect-ratio:5/4; }
+.cat-row .cat-text{ flex:1 1 40%; }
+@media (max-width:800px){
+  .cat-row, .cat-row.reverse{ flex-direction:column; align-items:stretch; gap:1.4rem; }
+  .cat-row .cat-img{ flex:1 1 auto; aspect-ratio:4/3; width:100%; }
+}
 @media (max-width:1024px){
   .grid-2{ grid-template-columns:1fr; gap:2.5rem; }
   .grid-3{ grid-template-columns:1fr 1fr; }
@@ -312,7 +317,7 @@ p.body-sm{ font-size:.95rem; color:var(--taupe); line-height:1.75; font-weight:3
 
 
 <header class="site-header">
-  <a href="index.html" class="brand">LUXURY <span>TERRA</span></a>
+  <a href="/" class="brand">LUXURY <span>TERRA</span></a>
   <button class="menu-toggle" aria-label="Toggle menu">
     <span>Menu</span>
     <span class="bars"><span></span><span></span><span></span></span>
@@ -321,15 +326,15 @@ p.body-sm{ font-size:.95rem; color:var(--taupe); line-height:1.75; font-weight:3
 
 <nav class="nav-overlay">
   <div class="nav-overlay-list">
-        <a href="index.html" class=""><span class="num">01</span><span class="word">Home</span></a>
-        <a href="portfolio.html" class="active"><span class="num">02</span><span class="word">Portfolio</span></a>
-        <a href="services.html" class=""><span class="num">03</span><span class="word">Services</span></a>
-        <a href="about.html" class=""><span class="num">04</span><span class="word">About</span></a>
-        <a href="contact.html" class=""><span class="num">05</span><span class="word">Contact</span></a>
+        <a href="/" class=""><span class="num">01</span><span class="word">Home</span></a>
+        <a href="/portfolio/" class="active"><span class="num">02</span><span class="word">Portfolio</span></a>
+        <a href="/services/" class=""><span class="num">03</span><span class="word">Services</span></a>
+        <a href="/about/" class=""><span class="num">04</span><span class="word">About</span></a>
+        <a href="/contact/" class=""><span class="num">05</span><span class="word">Contact</span></a>
   </div>
   <div class="nav-overlay-foot">
     <span>Toronto, Canada</span>
-    <a href="contact.html">Get in Touch</a>
+    <a href="/contact/">Get in Touch</a>
   </div>
 </nav>
 
@@ -340,7 +345,7 @@ p.body-sm{ font-size:.95rem; color:var(--taupe); line-height:1.75; font-weight:3
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,13,10,.55) 0%,rgba(16,13,10,.15) 40%,rgba(16,13,10,.8) 100%);"></div>
   </div>
   <div class="container" style="position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:4.5rem;color:var(--cream);">
-    <a href="portfolio.html" class="body-sm" style="color:#CFC7B3;margin-bottom:1rem;" data-cursor="Back">← Back to Portfolio</a>
+    <a href="/portfolio/" class="body-sm" style="color:#CFC7B3;margin-bottom:1rem;" data-cursor="Back">← Back to Portfolio</a>
     <span class="eyebrow" style="color:var(--bronze-lt);">Hospitality Design — Déjàvu Restaurant — Category 01</span>
     <h1 class="h-xl" style="margin-top:1rem;color:var(--cream);">
       <span data-split class="split-line">A tranquil vibe,</span>
@@ -358,7 +363,7 @@ p.body-sm{ font-size:.95rem; color:var(--taupe); line-height:1.75; font-weight:3
     </div>
     <div class="reveal-right d1">
       <p class="lead">Concept Statement — Tranquility. The concept for the restaurant's interior design is based on providing customers with a tranquil vibe that offers a balanced combination of comfort, style and elegance. The principle is to establish a space that makes customers and staff feel relaxed as soon as they arrive. Natural elements, including wood and stone, soft lighting and warm colors, all work together to create that tranquil vibe. With an effectively designed layout that provides a balanced flow, customers are certain to feel at home as well as connected. The careful placement of the seating patterns emphasizes privacy yet preserves flexibility, and the incorporation of natural light creates a feeling of vastness without sacrificing a connection to the outside world. The decoration is simple and elegant, and the candle decoration adds a hint of relaxation to the overall vibe — every detail, from the pattern of cutlery to the texture of table settings, chosen to contribute to an unforgettable dining experience.</p>
-      <div class="stat-row" style="margin-top:2.6rem;grid-template-columns:repeat(2,1fr);gap:1.6rem 2rem;">
+      <div class="stat-row" style="margin-top:2.6rem;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1.6rem 2rem;">
         <div class="stat"><div class="l">Project</div><div class="n" style="font-size:1.3rem;margin-top:.4rem;">Déjàvu Restaurant</div></div><div class="stat"><div class="l">Designer</div><div class="n" style="font-size:1.3rem;margin-top:.4rem;">Niusha Meymandinejad</div></div><div class="stat"><div class="l">Software</div><div class="n" style="font-size:1.3rem;margin-top:.4rem;">SketchUp — V-Ray</div></div><div class="stat"><div class="l">Scope</div><div class="n" style="font-size:1.3rem;margin-top:.4rem;">Full F&amp;B Interior</div></div>
       </div>
     </div>
@@ -410,7 +415,7 @@ p.body-sm{ font-size:.95rem; color:var(--taupe); line-height:1.75; font-weight:3
 
 <!-- NEXT PROJECT -->
 <section class="band band-dark" style="padding:5rem 0;">
-  <a href="portfolio-kitchen.html" class="container reveal" data-cursor="Next" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;">
+  <a href="/portfolio-kitchen/" class="container reveal" data-cursor="Next" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;">
     <div>
       <span class="eyebrow" style="color:var(--bronze-lt);">Next Category</span>
       <h2 class="h-lg" style="margin-top:.8rem;color:var(--cream);">Kitchen</h2>
@@ -430,25 +435,25 @@ p.body-sm{ font-size:.95rem; color:var(--taupe); line-height:1.75; font-weight:3
       <div class="footer-col">
         <h4>Studio</h4>
         <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/portfolio/">Portfolio</a></li>
+          <li><a href="/contact/">Contact</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Portfolio</h4>
         <ul>
-          <li><a href="portfolio-restaurant.html">Restaurant</a></li>
-          <li><a href="portfolio-kitchen.html">Kitchen</a></li>
-          <li><a href="portfolio-bathroom.html">Bathroom</a></li>
-          <li><a href="portfolio-loft.html">Loft</a></li>
+          <li><a href="/portfolio-restaurant/">Restaurant</a></li>
+          <li><a href="/portfolio-kitchen/">Kitchen</a></li>
+          <li><a href="/portfolio-bathroom/">Bathroom</a></li>
+          <li><a href="/portfolio-loft/">Loft</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Connect</h4>
         <ul>
-          <li><a href="contact.html">Get in Touch</a></li>
+          <li><a href="/contact/">Get in Touch</a></li>
           <li>Instagram</li>
           <li>Pinterest</li>
         </ul>
@@ -561,7 +566,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ---------- active nav link ---------- */
-  const path = window.location.pathname.split('/').pop() || 'index.html';
+  let path = window.location.pathname;
+  if(!path.endsWith('/')) path = path.replace(/\/[^\/]*$/, '/');
   document.querySelectorAll('.nav-desktop a, .nav-overlay-list a').forEach(a => {
     if(a.getAttribute('href') === path) a.classList.add('active');
   });
