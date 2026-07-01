@@ -284,9 +284,14 @@ p.body-sm{ font-size:.95rem; color:var(--taupe); line-height:1.75; font-weight:3
 .stat .n{ font-family:var(--display); font-size:clamp(2.2rem,4vw,3.2rem); font-weight:500; }
 .stat .l{ font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--taupe); margin-top:.4rem; }
 
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
+.cat-row{ display:flex; align-items:center; gap:4rem; }
+.cat-row.reverse{ flex-direction:row-reverse; }
+.cat-row .cat-img{ flex:1 1 55%; aspect-ratio:5/4; }
+.cat-row .cat-text{ flex:1 1 40%; }
+@media (max-width:800px){
+  .cat-row, .cat-row.reverse{ flex-direction:column; align-items:stretch; gap:1.4rem; }
+  .cat-row .cat-img{ flex:1 1 auto; aspect-ratio:4/3; width:100%; }
+}
 @media (max-width:1024px){
   .grid-2{ grid-template-columns:1fr; gap:2.5rem; }
   .grid-3{ grid-template-columns:1fr 1fr; }
@@ -352,7 +357,7 @@ p.body-sm{ font-size:.95rem; color:var(--taupe); line-height:1.75; font-weight:3
       <p class="lead" style="margin-bottom:2.4rem;">Tell us a little about the space, and a lead designer will reply within two business days.</p>
       <form id="contactForm" style="display:flex;flex-direction:column;gap:1.8rem;">
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.6rem;">
           <label style="display:flex;flex-direction:column;gap:.5rem;">
             <span class="eyebrow" style="font-size:.65rem;">Name</span>
             <input required type="text" name="name" placeholder="Full name" style="border:none;border-bottom:1px solid var(--line);background:transparent;padding:.6rem 0;font-family:var(--body);font-size:1rem;outline:none;">
